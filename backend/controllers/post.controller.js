@@ -58,6 +58,8 @@ export const deletePost = async (req, res) => {
     }
 
     await Post.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
     console.log("Error in deletePost controller: ", error);
     res.status(500).json({ error: "Internal server error" });
@@ -230,11 +232,10 @@ export const getUserPosts = async (req, res) => {
       })
       .populate({
         path: "comments.user",
-        select: "-password"
+        select: "-password",
       });
 
-      res.status(200).json(posts);
-
+    res.status(200).json(posts);
   } catch (error) {
     console.log("Error in getUserPosts controller: ", error);
     res.status(500).json({ error: "Internal server error" });
