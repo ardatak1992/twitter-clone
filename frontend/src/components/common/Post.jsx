@@ -66,7 +66,8 @@ const Post = ({ post }) => {
       }
     },
     onSuccess: (updatedLikes) => {
-      toast.success("Post liked successfully");
+      console.log(updatedLikes)
+      
       // queryClient.invalidateQueries({ queryKey: ["posts"] });
       queryClient.setQueryData(["posts"], (oldData) => {
         return oldData.map((p) => {
