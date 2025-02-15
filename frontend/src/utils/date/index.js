@@ -42,7 +42,7 @@ export const formatMembersinceDate = (createdAt) => {
     "December",
   ];
 
-  const month = months[date.getMonth];
+  const month = months[date.getMonth()];
   const year = date.getFullYear();
   return `Joined ${month} ${year}`;
 };
