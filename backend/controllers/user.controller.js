@@ -95,6 +95,7 @@ export const getSuggestedUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
   const { fullName, email, username, currentPassword, newPassword, bio, link } =
     req.body;
+
   let { profileImg, coverImg } = req.body;
 
   const userId = req.user._id;
@@ -156,12 +157,13 @@ export const updateUser = async (req, res) => {
     user.bio = bio || user.bio;
     user.link = link || user.link;
     user.coverImg = coverImg || user.coverImg;
+    user.profileImg = profileImg || user.profileImg;
 
     user = await user.save();
 
     user.password = null;
 
-    return res.status(200).json(user);
+    res.status(200).json(user);
   } catch (error) {
     console.log("Error in updateUser: ", error.message);
     res.status(500).json({ error: error.message });
